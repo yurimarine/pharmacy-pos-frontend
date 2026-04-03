@@ -1,4 +1,6 @@
-import Sidebar from "@/components/sidebar/Sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { Header } from "@/components/header";
 
 export default function AdminLayout({
   children,
@@ -6,12 +8,12 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen">
-      {/* Left: Sidebar */}
-      <Sidebar />
-
-      {/* Right: Page content */}
-      <main className="flex-1 p-6 bg-gray-50">{children}</main>
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+      <div className="flex flex-1 flex-col">
+        <Header />
+        <main className="flex-1 p-4">{children}</main>
+      </div>
+    </SidebarProvider>
   );
 }
